@@ -17,6 +17,5 @@ public class Rating {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "productId")
     private Product product;
-
 }
 

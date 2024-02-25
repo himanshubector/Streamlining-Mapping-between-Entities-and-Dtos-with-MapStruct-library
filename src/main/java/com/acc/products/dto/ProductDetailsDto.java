@@ -17,4 +17,5 @@ public class ProductDetailsDto
 
     @JsonProperty("extendedDescription")
     private String extendedDescription;
+
 }

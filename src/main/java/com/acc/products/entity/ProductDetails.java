@@ -17,4 +17,5 @@ public class ProductDetails
     private String technicalSpecifications;
     private String specialFeatures;
     private String extendedDescription;
+
 }

@@ -2,6 +2,7 @@ package com.acc.products.service;
 
 import com.acc.products.dto.ProductDto;
 import com.acc.products.entity.Product;
+import com.acc.products.mapper.ProductMapStructMapper;
 import com.acc.products.mapper.ProductMapper;
 import com.acc.products.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,12 @@ public class ProductService
 {
     @Autowired
     private ProductRepository productRepository;
+    private final ProductMapStructMapper productMapStructMapper;
 
-    private final ProductMapper productMapper;
 
-
-    public ProductService(ProductMapper productMapper)
+    public ProductService(ProductMapStructMapper productMapStructMapper)
     {
-        this.productMapper = productMapper;
+        this.productMapStructMapper = productMapStructMapper;
     }
 
     public List<Product> getProductsByBrand(String brand) {
@@ -32,7 +32,7 @@ public class ProductService
     {
         // Convert ProductDto to Product entity
 
-        Product product = productMapper.fromDto(productDto);
+        Product product = productMapStructMapper.fromDto(productDto);
 
         // Save the product
         productRepository.save(product);

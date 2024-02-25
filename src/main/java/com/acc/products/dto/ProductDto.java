@@ -4,26 +4,21 @@ import com.acc.products.entity.ProductDetails;
 import com.acc.products.entity.Review;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
 @Data
 public class ProductDto
 {
-    private String productName;
+    private int prodId;
+    private String name;
     private String brand;
-
-    @JsonProperty("manufacturerName")
+    private String desc;
     private String manufacturer;
 
-    @JsonProperty("productDetails")
     private ProductDetailsDto productDetails;
 
-
-    @JsonProperty("reviews")
     private List<ReviewDto> reviews;
-
-
-    @JsonProperty("productRatings")
     private List<RatingDto> ratings;
 }

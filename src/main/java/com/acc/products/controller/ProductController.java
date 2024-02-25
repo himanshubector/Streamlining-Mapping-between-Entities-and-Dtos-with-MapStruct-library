@@ -1,7 +1,10 @@
 package com.acc.products.controller;
 
 import com.acc.products.dto.ProductDto;
+import com.acc.products.dto.ReviewDto;
 import com.acc.products.entity.Product;
+import com.acc.products.entity.Review;
+import com.acc.products.mapper.ProductMapStructMapper;
 import com.acc.products.mapper.ProductMapper;
 import com.acc.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +13,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-//    @Autowired
-//    private ProductService productService;
-
-//     @Autowired
-//     private ProductMapper productMapper;
-
-
+    private final ProductMapStructMapper productMapStructMapper;
     private final ProductService productService;
-    private final ProductMapper productMapper;
 
-    public ProductController(ProductService productService, ProductMapper productMapper) {
+    public ProductController(ProductService productService, ProductMapStructMapper productMapStructMapper) {
         this.productService = productService;
-        this.productMapper = productMapper;
+        this.productMapStructMapper = productMapStructMapper;
     }
 
 
     @GetMapping("/getByBrand")
     public ResponseEntity<List<ProductDto>> getProductsByBrand(@RequestParam String brand) {
 
-         List<Product> productsList = productService.getProductsByBrand(brand);
+        List<Product> productsList = productService.getProductsByBrand(brand);
 
-        List<ProductDto> productDtosList = productMapper.toDtoList(productsList);
+        List<ProductDto> productDtosList = productMapStructMapper.toDtoList(productsList);
+
         return ResponseEntity.ok(productDtosList);
     }
 
